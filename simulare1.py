@@ -6,8 +6,8 @@ K_RES = 200
 SIGMA_RES = 120        
 N_SIM_PER_CELL = 1000  
 
-MAX_ERR_THETA = 15 * (np.pi / 180)
-MAX_ERR_DIST = 0.1
+MAX_ERR_THETA = 10 * (np.pi / 180)
+MAX_ERR_DIST = 0.01
 LATENCY_B = 0.004
 
 def calculeaza_probabilitati_limitat(k_min, k_max, sigma_min, sigma_max):
@@ -30,17 +30,19 @@ def calculeaza_probabilitati_limitat(k_min, k_max, sigma_min, sigma_max):
             err_r = np.random.uniform(-MAX_ERR_DIST, MAX_ERR_DIST, N_SIM_PER_CELL) * sigma
             rc_perc = np.clip(rc_real + err_r, 0.01, 0.99)
             
+            unghi_start_real = np.where(rc_perc <= rc_real, 
+                                        np.pi, 
+                                        np.pi * (rc_real / rc_perc))
+
             err_theta = np.random.uniform(-MAX_ERR_THETA, MAX_ERR_THETA, N_SIM_PER_CELL) * sigma
-            
-            t_spirala = (1/vb) * np.arcsin(np.minimum(rc_perc * vb / va, 1.0))
             
             t_sprint_a = (1.0 - rc_perc) / va
             
             t_util_b = np.maximum(0, t_sprint_a - LATENCY_B)
             
-            capacitate_b_necesara = np.pi - np.abs(err_theta)
-            capacitate_b_reala = vb * t_util_b
+            capacitate_b_necesara = unghi_start_real - np.abs(err_theta)
             
+            capacitate_b_reala = vb * t_util_b
             succese = np.sum(capacitate_b_reala < capacitate_b_necesara)
             Z[i, j] = (succese / N_SIM_PER_CELL) * 100
 
