@@ -39,3 +39,61 @@ Pentru a transforma modelul geometric ideal într-o simulare probabilistică rea
 * **Timpul de reacție ($\tau$):** Simulează latența Persoanei B în perceperea atacului și schimbarea direcției de alergare pe circumferință.
 
 Am ales să variem acești parametri, menținând vitezele constante, pentru a observa cum incertitudinea umană afectează rata de succes a evadării în vecinătatea pragului critic $k \approx 4.14$. Această abordare permite aplicarea riguroasă a **Inegalității Hoeffding** pentru analiza erorii de eșantionare.
+
+---
+
+Obiectivul principal al acestui studiu este determinarea probabilității de succes a lui $A$ de a părăsi incinta circulară înainte de a fi interceptat de către  $B$, într-un regim de viteză definit de raportul $k$ și sub influența unui indice de zgomot $\sigma$.
+De asemenea, dorim să vedem cum influențează fiecare dintre cei trei parametri rezultatul simulării.
+
+### `simulare0.py`
+Pentru un $k$ (raportul vitezelor) si un $\sigma$ (factorul de zgomot) date de la tastatura, calculeaza probabilitatea ca A
+sa atinga circumferinta fara sa fie prins de B. In plus, afiseaza pe cerc si zona prin care A paraseste cercul in cazurile in care acesta evadeaza.
+
+---
+
+<img width="500" alt="Screenshot 2026-01-10 211125" src="https://github.com/user-attachments/assets/3abb1da6-84d5-4f7d-89a9-3050cc1e49df" />
+
+### `simulare1.py`
+Acest script genereaza un heatmap pentru probabilitatea de evadare la orice raport $k$ si la orice factor $\sigma$ (ambii parametri fiind din 2 intervale de lungime finita).
+
+---
+
+### Fara zgomot vs zgomot
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/fac25ac3-c351-4886-a17b-958f48e529d4" width="48%" height=300/>
+  <img src="https://github.com/user-attachments/assets/33a35254-569b-4587-898b-4426db428f85" width="48%" height=300/>
+</p>
+
+---
+
+### Efectul poziției de start a sprintului
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/33a35254-569b-4587-898b-4426db428f85" width="48%" height=300/>
+  <img src="https://github.com/user-attachments/assets/7de45d9e-73b2-441c-b0c0-4c473b1f9d2a" width="48%" height=300/>
+</p>
+
+Variația punctului de start al sprintului lărgește zona de incertitudine pe heatmap, estompând granița dintre succes și eșec. Această stocasticitate transformă limita teoretică fixă într-un gradient de probabilitate difuz. Rezultatul este un spectru unde succesul depinde de interacțiunea erorilor, nu doar de viteză.
+
+---
+
+### Efectul unghiului de sprint
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/33a35254-569b-4587-898b-4426db428f85" width="48%" height=300/>
+  <img src="https://github.com/user-attachments/assets/d87c2ff4-6924-4129-8b5c-9e887372d10a" width="48%" height=300/>
+</p>
+
+Creșterea erorii unghiulare de sprint lărgește considerabil zona de incertitudine (galbenă) și o înclină pronunțat spre stânga pe harta de densitate. Acest fenomen demonstrează că imprecizia direcției de fugă reduce drastic șansele de succes chiar și pentru rapoarte de viteză $k$ teoretic sigure.
+
+---
+
+### Efectul timpului de reacție
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/33a35254-569b-4587-898b-4426db428f85" width="48%" height=300/>
+  <img src="https://github.com/user-attachments/assets/9df7e8c6-3560-4058-b65c-fa0eab9fbe3c" width="48%" height=300/>
+</p>
+
+Mărirea timpului de reacție al urmăritorului favorizează direct persoana A, oferindu-i acestuia o fereastră temporală critică pentru a câștiga distanță în faza inițială a sprintului. Vizual, acest avantaj se traduce prin deplasarea frontierei de succes spre dreapta, depășind vizibil limita teoretică ideală de $k \approx 4.14$. 
