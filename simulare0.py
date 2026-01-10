@@ -13,12 +13,17 @@ def simuleaza_scenariu_fix(k, sigma, n_simulari=25000):
     rc_perceput = np.clip(RC_IDEAL + err_r, 0.01, 0.95)
     err_theta = np.random.uniform(-MAX_ERR_THETA * sigma, MAX_ERR_THETA * sigma, n_simulari)
 
+    unghi_plecare_b = np.where(rc_perceput <= RC_IDEAL, 
+                               np.pi, 
+                               np.pi * (RC_IDEAL / rc_perceput))
+
     t_spirala = (1/VB) * np.arcsin(np.minimum(rc_perceput * VB / VA, 1.0))
     t_sprint_a = (1.0 - rc_perceput) / VA
     t_util_b = np.maximum(0, t_sprint_a - LATENCY_B)
 
-    dist_unghiulara_necesara = np.pi - np.abs(err_theta)
+    dist_unghiulara_necesara = unghi_plecare_b - np.abs(err_theta)
     dist_unghiulara_reala_b = VB * t_util_b
+    
     succese_mask = dist_unghiulara_reala_b < dist_unghiulara_necesara
     rata_succes = (np.sum(succese_mask) / n_simulari) * 100
 
