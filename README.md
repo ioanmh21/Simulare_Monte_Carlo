@@ -72,7 +72,8 @@ Acest script genereaza un heatmap pentru probabilitatea de evadare la orice rapo
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/33a35254-569b-4587-898b-4426db428f85" width="48%" height=300/>
-  <img src="https://github.com/user-attachments/assets/7de45d9e-73b2-441c-b0c0-4c473b1f9d2a" width="48%" height=300/>
+  <img src="https://github.com/user-attachments/assets/7bfbe21e-6873-4f5d-a096-956671cfce96" width="48%" height=300/>
+
 </p>
 
 Variația punctului de start al sprintului lărgește zona de incertitudine pe heatmap, estompând granița dintre succes și eșec. Această stocasticitate transformă limita teoretică fixă într-un gradient de probabilitate difuz. Rezultatul este un spectru unde succesul depinde de interacțiunea erorilor, nu doar de viteză.
@@ -83,7 +84,8 @@ Variația punctului de start al sprintului lărgește zona de incertitudine pe h
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/33a35254-569b-4587-898b-4426db428f85" width="48%" height=300/>
-  <img src="https://github.com/user-attachments/assets/d87c2ff4-6924-4129-8b5c-9e887372d10a" width="48%" height=300/>
+  <img src="https://github.com/user-attachments/assets/555ca0e0-a9df-41e3-95cf-ee729157b0f2" width="48%" height=300/>
+
 </p>
 
 Creșterea erorii unghiulare de sprint lărgește considerabil zona de incertitudine (galbenă) și o înclină pronunțat spre stânga pe harta de densitate. Acest fenomen demonstrează că imprecizia direcției de fugă reduce drastic șansele de succes chiar și pentru rapoarte de viteză $k$ teoretic sigure.
