@@ -9,9 +9,10 @@ def simuleaza_scenariu_fix(k, sigma, n_simulari=25000):
     MAX_ERR_THETA = 15 * (np.pi / 180)
     MAX_ERR_DIST = 0.1
 
-    err_r = np.random.uniform(-MAX_ERR_DIST * sigma, MAX_ERR_DIST * sigma, n_simulari)
+    err_r = np.random.normal(0, MAX_ERR_DIST * sigma, n_simulari)
     rc_perceput = np.clip(RC_IDEAL + err_r, 0.01, 0.95)
-    err_theta = np.random.uniform(-MAX_ERR_THETA * sigma, MAX_ERR_THETA * sigma, n_simulari)
+    
+    err_theta = np.random.normal(0, MAX_ERR_THETA * sigma, n_simulari)
 
     unghi_plecare_b = np.where(rc_perceput <= RC_IDEAL, 
                                np.pi, 
@@ -55,3 +56,4 @@ plt.gca().set_aspect('equal')
 plt.title(f"Probabilitate: {rata:.2f}% | k={k_input} | $sigma$={sigma_input}")
 plt.legend()
 plt.show()
+
