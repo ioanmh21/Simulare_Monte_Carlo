@@ -110,7 +110,37 @@ Creșterea erorii unghiulare de sprint lărgește considerabil zona de incertitu
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/33a35254-569b-4587-898b-4426db428f85" width="48%" height=300/>
+
+
   <img src="https://github.com/user-attachments/assets/9df7e8c6-3560-4058-b65c-fa0eab9fbe3c" width="48%" height=300/>
 </p>
-
 Mărirea timpului de reacție al urmăritorului favorizează direct persoana A, oferindu-i acestuia o fereastră temporală critică pentru a câștiga distanță în faza inițială a sprintului. Vizual, acest avantaj se traduce prin deplasarea frontierei de succes spre dreapta, depășind vizibil limita teoretică ideală de $k \approx 4.14$. 
+## 5. Instrucțiuni de Utilizare
+
+### Cerințe sistem
+* **Python 3.x**
+* **Biblioteci**: `numpy`, `matplotlib`
+
+### Rulare
+
+#### 1. Simulare Punctuală:
+
+```bash
+python3 simulare0.py
+```
+* Introduceți `k` (ex: 4.1) și `sigma` (ex: 0.5).
+* Rezultat: Procentajul de succes și distribuția spațială a evadărilor.
+
+#### 2. Generare Analiză Globală:
+
+```bash
+python3 simulare1.py
+```
+* Rezultat: Heatmap-ul care compară raportul de viteze vs. intensitatea zgomotului.
+
+
+
+
+
+
+
