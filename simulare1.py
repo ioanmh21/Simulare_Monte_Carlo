@@ -17,8 +17,6 @@ def calculeaza_probabilitati_limitat(k_min, k_max, sigma_min, sigma_max):
     K_GRID, SIGMA_GRID = np.meshgrid(k_vals, sigma_vals)
     Z = np.zeros_like(K_GRID)
 
-    start_time = time.time()
-
     for i in range(SIGMA_RES):
         for j in range(K_RES):
             k = K_GRID[i, j]
@@ -27,22 +25,22 @@ def calculeaza_probabilitati_limitat(k_min, k_max, sigma_min, sigma_max):
             vb = k * va
             rc_real = 1 / k
             
-            err_r = np.random.uniform(-MAX_ERR_DIST, MAX_ERR_DIST, N_SIM_PER_CELL) * sigma
+        
+            err_r = np.random.normal(0, MAX_ERR_DIST * sigma, N_SIM_PER_CELL)
             rc_perc = np.clip(rc_real + err_r, 0.01, 0.99)
+            
+            err_theta = np.random.normal(0, MAX_ERR_THETA * sigma, N_SIM_PER_CELL)
             
             unghi_start_real = np.where(rc_perc <= rc_real, 
                                         np.pi, 
                                         np.pi * (rc_real / rc_perc))
-
-            err_theta = np.random.uniform(-MAX_ERR_THETA, MAX_ERR_THETA, N_SIM_PER_CELL) * sigma
             
             t_sprint_a = (1.0 - rc_perc) / va
-            
             t_util_b = np.maximum(0, t_sprint_a - LATENCY_B)
             
             capacitate_b_necesara = unghi_start_real - np.abs(err_theta)
-            
             capacitate_b_reala = vb * t_util_b
+            
             succese = np.sum(capacitate_b_reala < capacitate_b_necesara)
             Z[i, j] = (succese / N_SIM_PER_CELL) * 100
 
