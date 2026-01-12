@@ -1,7 +1,7 @@
 # Analiza Stochastică a Strategiilor de Evadare în Sisteme de Urmărire-Intercepție pe Domeniu Circular
 ## Descrierea Scenariului
 Sistemul de studiu este reprezentat de un domeniu circular de rază $R$, în cadrul căruia interacționează două persoane, **A** și **B**, ambele deplasându-se cu viteze constante. Problema urmărește dinamica dintre un agent care încearcă să părăsească un perimetru și un interceptor care restricționează această ieșire.
-Presupunem că cele două persoane vor face la fiecare moment cea mai bună mișcare, chiar dacă această mișcare le înrăutățește poziția – dorim să evităm starea de stalemate, iar la adăugarea zgomotului acest lucru va face să fie posibil ca persoana A să evadeze, deși teoretic ar fi fost imposibil pentru ea.
+
 
 
 
@@ -15,7 +15,7 @@ Presupunem că cele două persoane vor face la fiecare moment cea mai bună miș
 * **Obiectiv:** Să atingă orice punct de pe circumferința cercului pentru a ieși din domeniu fără a fi interceptată de Persoana B (obiectivul trebuie atins intr-un timp finit).
 
 ### **Persoana B**
-* **Poziția inițială:** Orice punct situat pe lungimea cercului (frontieră).
+* **Poziția inițială:** Orice punct situat pe circumferința cercului .
 * **Libertate de mișcare:** Este restricționată exclusiv la deplasarea pe circumferința discului (perimetru).
 * **Obiectiv:** Să o opreasca pe Persoana A din parasirea cercului.
 
@@ -49,6 +49,20 @@ De asemenea, dorim să vedem cum influențează fiecare dintre cei trei parametr
 ### `simulare0.py`
 Pentru un $k$ (raportul vitezelor) si un $\sigma$ (factorul de zgomot) date de la tastatura, calculeaza probabilitatea ca A
 sa atinga circumferinta fara sa fie prins de B. In plus, afiseaza pe cerc si zona prin care A paraseste cercul in cazurile in care acesta evadeaza.
+
+
+Pentru a determina robustețea simulării, folosim **Inegalitatea lui Hoeffding**. Deoarece variabilele noastre $X_i$ sunt de tip Bernoulli (0 sau 1), eroarea dintre probabilitatea estimată $\hat{P}$ și cea reală $P$ este limitată de:
+
+$$P(|\hat{P} - P| \geq \epsilon) \leq 2e^{-2N\epsilon^2}$$
+
+
+Dacă dorim o marjă de eroare $\epsilon = 0.01$ (1%) cu un nivel de încredere de 95% ($\delta = 0.05$):
+
+$$0.05 = 2e^{-2N(0.01)^2} \implies \ln(0.025) = -0.0002N \implies N \approx 18,444$$
+
+Codul nostru utilizează $N = 25,000$ în `simulare0.py`, ceea ce garantează o precizie superioară pragului de 1%.
+
+
 
 ---
 
