@@ -115,6 +115,7 @@ Creșterea erorii unghiulare de sprint lărgește considerabil zona de incertitu
   <img src="https://github.com/user-attachments/assets/9df7e8c6-3560-4058-b65c-fa0eab9fbe3c" width="48%" height=300/>
 </p>
 Mărirea timpului de reacție al urmăritorului favorizează direct persoana A, oferindu-i acestuia o fereastră temporală critică pentru a câștiga distanță în faza inițială a sprintului. Vizual, acest avantaj se traduce prin deplasarea frontierei de succes spre dreapta, depășind vizibil limita teoretică ideală de $k \approx 4.14$. 
+
 ## 5. Instrucțiuni de Utilizare
 
 ### Cerințe sistem
